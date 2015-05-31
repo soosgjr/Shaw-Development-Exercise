@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace ShawInterviewExercise.Common.Data
 {
-	public class Dal : IDisposable, IShowDal
+	public class XmlDal : IDisposable, IShowDal
 	{
-		public List<Show> Shows { get; set; }
+		public string StorageFilepath;
 
-		public Dal()
+		public XmlDal(string storageFilepath)
 		{
-			this.Shows = this.GenerateDefaultData();
+			this.StorageFilepath = storageFilepath;
 		}
 
 		public void Dispose()
@@ -24,22 +26,35 @@ namespace ShawInterviewExercise.Common.Data
 			{
 				throw new ArgumentNullException("show");
 			}
-			if ((from row in this.Shows where row.Id == show.Id select row).Any())
+
+			List<Show> shows = this.LoadData();
+			if (shows.Any())
 			{
-				throw new DuplicateKeyException();
+				show.Id = (from row in shows select row.Id).Max() + 1;
 			}
+			else
+			{
+				show.Id = 1;
+			}
+			show.Slug = Slugifier.Slugify(show.Name);
 
-			this.Shows.Add(show);
+			var rng = new Random();
+			var images = new string[] { "red.png", "green.png", "blue.png" };
+			show.Filename = (from row in images orderby rng.NextDouble() select row).First();
+
+			shows.Add(show);
+			this.SaveData(shows);
 		}
 
-		public IEnumerable<Show> GetAllShows()
+		public IEnumerable<Show> ReadShows()
 		{
-			return Shows;
+			return this.LoadData();
 		}
 
-		public Show GetShowById(int id)
+		public Show ReadShowById(int id)
 		{
-			return this.Shows.FirstOrDefault(x => x.Id.Equals(id));
+			var shows = this.LoadData();
+			return shows.FirstOrDefault(x => x.Id.Equals(id));
 		}
 
 		public void UpdateShow(Show show)
@@ -49,59 +64,56 @@ namespace ShawInterviewExercise.Common.Data
 				throw new ArgumentNullException("show");
 			}
 
-			IEnumerable<Show> matches = from row in this.Shows where row.Id == show.Id select row;
+			List<Show> shows = this.LoadData();
+			IEnumerable<Show> matches = from row in shows where row.Id == show.Id select row;
 			if (!matches.Any())
 			{
 				throw new InvalidKeyException();
 			}
 
-			this.Shows.Remove(matches.First());
-			this.Shows.Add(show);
+			Show match = matches.First();
+			match.Name = show.Name;
+			match.Slug = Slugifier.Slugify(show.Name);
+			match.Description = show.Description;
+			this.SaveData(shows);
 		}
 
 		public void DeleteShow(int id)
 		{
-			throw new NotImplementedException();
+			List<Show> shows = this.LoadData();
+			IEnumerable<Show> matches = from row in shows where row.Id == id select row;
+			if (!matches.Any())
+			{
+				throw new InvalidKeyException();
+			}
+
+			shows.Remove(matches.First());
+			this.SaveData(shows);
 		}
 
-		private List<Show> GenerateDefaultData()
+		private List<Show> LoadData()
 		{
-			var shows = new List<Show>();
-
-			shows.Add(
-				new Show()
+			if (File.Exists(this.StorageFilepath))
+			{
+				using (var fileStream = new FileStream(this.StorageFilepath, FileMode.Open))
 				{
-					Id = 1,
-					Slug = "pellentesque-vitae-nisi",
-					Name = "Pellentesque Vitae Nisi",
-					Description = "Praesent vitae erat eget elit placerat rhoncus ac non lectus.",
-					Filename = "red.png",
+					var xml = new XmlSerializer(typeof(List<Show>));
+					return (List<Show>)xml.Deserialize(fileStream);
 				}
-			);
+			}
+			else
+			{
+				return new List<Show>();
+			}
+		}
 
-			shows.Add(
-				new Show()
-				{
-					Id = 2,
-					Slug = "integer-commodo-tristique",
-					Name = "Integer Commodo Tristique",
-					Description = "Maecenas egestas lacus et est lobortis venenatis.",
-					Filename = "green.png",
-				}
-			);
-
-			shows.Add(
-				new Show()
-				{
-					Id = 3,
-					Slug = "aenean-at-volutpat",
-					Name = "Aenean At Volutpat",
-					Description = "Donec non quam ut felis ullamcorper fringilla nec in orci.",
-					Filename = "blue.png",
-				}
-			);
-
-			return shows;
+		private void SaveData(IEnumerable<Show> data)
+		{
+			var serializer = new XmlSerializer(typeof(List<Show>));
+			using (var stream = new FileStream(this.StorageFilepath, FileMode.Create))
+			{
+				serializer.Serialize(stream, data);
+			}
 		}
 	}
 }

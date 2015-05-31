@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShowAdminController.cs" />
     <Compile Include="Controllers\ShowController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -142,6 +143,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_Layout.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ShowAdmin\Create.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Create.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ShowAdmin\Delete.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Delete.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ShowAdmin\Index.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ShowAdmin\Update.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Update.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Show\Index.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -149,6 +170,7 @@
     </Compile>
     <Compile Include="Routing\ApiRouter.cs" />
     <Compile Include="Routing\HomeRouter.cs" />
+    <Compile Include="Routing\ShowAdminRouter.cs" />
     <Compile Include="Routing\ShowRouter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -166,12 +188,16 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Show.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\ShowAdmin\Create.cshtml" />
+    <Content Include="Views\ShowAdmin\Index.cshtml" />
+    <Content Include="Views\ShowAdmin\Update.cshtml" />
+    <Content Include="Views\ShowAdmin\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Resources\Error\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Show\Details.cshtml" />
@@ -187,6 +213,22 @@
     <EmbeddedResource Include="Resources\Shared\_Layout.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>_Layout.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ShowAdmin\Create.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Create.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ShowAdmin\Delete.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Delete.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ShowAdmin\Index.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ShowAdmin\Update.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Update.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Show\Index.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

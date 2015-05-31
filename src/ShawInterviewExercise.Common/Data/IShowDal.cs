@@ -6,9 +6,9 @@ namespace ShawInterviewExercise.Common.Data
 	{
 		void CreateShow(Show show);
 
-		IEnumerable<Show> GetAllShows();
+		IEnumerable<Show> ReadShows();
 
-		Show GetShowById(int id);
+		Show ReadShowById(int id);
 
 		void UpdateShow(Show show);
 

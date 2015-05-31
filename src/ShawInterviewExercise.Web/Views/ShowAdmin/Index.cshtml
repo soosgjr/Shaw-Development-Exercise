@@ -1,0 +1,20 @@
+﻿@using Resources = ShawInterviewExercise.Web.Resources.ShowAdmin.Index
+@using LayoutResources = ShawInterviewExercise.Web.Resources.Shared._Layout
+@model System.Collections.Generic.IEnumerable<Show>
+@{
+	ViewBag.Title = Resources.Admin;
+}
+@section Breadcrumbs
+{
+	<li><a href="@HomeRouter.Index(this.Url)">@LayoutResources.Home</a></li>
+	<li><a href="@ShowAdminRouter.Index(this.Url)">@Resources.Admin</a></li>
+}
+
+<h2>@Resources.Admin</h2>
+<ul>
+	@foreach (Show show in this.Model)
+	{
+		<li><a href="@ShowAdminRouter.Update(this.Url, show.Id)">@show.Name</a> <a href="@ShowAdminRouter.Delete(this.Url, show.Id)">@Resources.Delete</a></li>
+	}
+	<li><a href="@ShowAdminRouter.Create(this.Url)">@Resources.CreateNew</a></li>
+</ul>

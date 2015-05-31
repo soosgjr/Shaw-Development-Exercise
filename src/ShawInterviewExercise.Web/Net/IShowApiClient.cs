@@ -6,14 +6,14 @@ namespace ShawInterviewExercise.Web.Net
 {
 	public interface IShowApiClient
 	{
-		void CreateShow(Show show);
+		Task CreateShow(Show show);
 
 		Task<IEnumerable<Show>> GetAllShows();
 
 		Task<Show> GetShow(int id);
 
-		void UpdateShow(Show show);
+		Task UpdateShow(Show show);
 
-		void DeleteShow(int id);
+		Task DeleteShow(int id);
 	}
 }

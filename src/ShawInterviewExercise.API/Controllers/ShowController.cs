@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using ShawInterviewExercise.Common.Data;
 
@@ -14,17 +15,17 @@ namespace ShawInterviewExercise.API.Controllers
 
 		public ShowController(IShowDal dal = null)
 		{
-			this.ShowDal = dal ?? new Dal();
+			this.ShowDal = dal ?? new XmlDal(HttpContext.Current.Server.MapPath("~/App_Data/shows.xml"));
 		}
 
 		public IEnumerable<Show> Get()
 		{
-			return this.ShowDal.GetAllShows();
+			return this.ShowDal.ReadShows();
 		}
 
 		public Show Get(int id)
 		{
-			Show show = this.ShowDal.GetShowById(id);
+			Show show = this.ShowDal.ReadShowById(id);
 
 			if (show == null)
 			{
@@ -37,15 +38,7 @@ namespace ShawInterviewExercise.API.Controllers
 
 		public void Post(Show show)
 		{
-			try
-			{
-				this.ShowDal.CreateShow(show);
-			}
-			catch (DuplicateKeyException)
-			{
-				var message = new HttpResponseMessage(HttpStatusCode.Conflict);
-				throw new HttpResponseException(message);
-			}
+			this.ShowDal.CreateShow(show);
 		}
 
 		public void Put(Show show)
@@ -57,11 +50,6 @@ namespace ShawInterviewExercise.API.Controllers
 			catch (InvalidKeyException)
 			{
 				var message = new HttpResponseMessage(HttpStatusCode.NotFound);
-				throw new HttpResponseException(message);
-			}
-			catch (DuplicateKeyException)
-			{
-				var message = new HttpResponseMessage(HttpStatusCode.Conflict);
 				throw new HttpResponseException(message);
 			}
 		}

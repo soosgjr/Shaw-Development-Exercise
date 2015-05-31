@@ -7,16 +7,12 @@
 	<title>@(String.IsNullOrWhiteSpace(this.ViewBag.Title) ? Resources.Title : ViewBag.Title.ToString() + " | " + @Resources.Title)</title>
 	@Styles.Render("~/Content/css")
 	@Scripts.Render("~/bundles/modernizr")
-	<script type="text/javascript">
-		var config = {
-			apiUrl: @this.Html.Raw(Json.Encode(this.Url.Content(ApiRouter.ApiUrl)))
-			};
-	</script>
 </head>
 <body>
 	<ul>
 		<li><a href="@HomeRouter.Index(this.Url)">@Resources.Home</a></li>
 		<li><a href="@ShowRouter.Index(this.Url)">@Resources.Shows</a></li>
+		<li><a href="@ShowAdminRouter.Index(this.Url)">@Resources.Admin</a></li>
 	</ul>
 	@if (this.IsSectionDefined("Breadcrumbs"))
 	{
@@ -26,6 +22,10 @@
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/jqueryui")
 	@Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/site")
+	<script type="text/javascript">
+		sie.net.ApiClient.apiUrl = @this.Html.Raw(Json.Encode(this.Url.Content(ApiRouter.ApiUrl)));
+	</script>
 	@this.RenderSection("Scripts", false)
 </body>
 </html>

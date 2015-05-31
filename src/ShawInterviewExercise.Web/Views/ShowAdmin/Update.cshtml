@@ -1,0 +1,21 @@
+﻿@using Resources = ShawInterviewExercise.Web.Resources.ShowAdmin.Update
+@using IndexResources = ShawInterviewExercise.Web.Resources.ShowAdmin.Index
+@using LayoutResources = ShawInterviewExercise.Web.Resources.Shared._Layout
+@model Show
+@{
+	ViewBag.Title = this.Model.Name;
+}
+@section Breadcrumbs
+{
+	<li><a href="@HomeRouter.Index(this.Url)">@LayoutResources.Home</a></li>
+	<li><a href="@ShowAdminRouter.Index(this.Url)">@IndexResources.Admin</a></li>
+	<li><a href="@ShowAdminRouter.Update(this.Url, this.Model.Id)">@this.Model.Name</a></li>
+}
+
+<h2>@this.Model.Name</h2>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.EditorFor(model => this.Model)
+	<div><input type="submit" value="@Resources.Submit" /></div>
+}

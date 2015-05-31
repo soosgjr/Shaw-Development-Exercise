@@ -12,39 +12,56 @@ namespace ShawInterviewExercise.Web.Net
 {
 	public class ApiClient : IShowApiClient
 	{
-		public async void CreateShow(Show show)
+		public async Task CreateShow(Show show)
 		{
-			throw new NotImplementedException();
+			await this.Post("api/show", show);
 		}
 
 		public async Task<IEnumerable<Show>> GetAllShows()
 		{
-			return await this.RequestData<IEnumerable<Show>>(ApiRouter.Show.GetAllShow);
+			return await this.Get<IEnumerable<Show>>("api/show");
 		}
 
 		public async Task<Show> GetShow(int id)
 		{
-			return await this.RequestData<Show>(String.Format(ApiRouter.Show.GetShow, id.ToString()));
+			return await this.Get<Show>(String.Format("api/show/{0}", id.ToString()));
 		}
 
-		public async void UpdateShow(Show show)
+		public async Task UpdateShow(Show show)
 		{
-			throw new NotImplementedException();
+			await this.Put("api/show", show);
 		}
 
-		public async void DeleteShow(int id)
+		public async Task DeleteShow(int id)
 		{
-			throw new NotImplementedException();
+			await this.Delete(String.Format("api/show/{0}", id.ToString()));
 		}
 
-		private async Task<T> RequestData<T>(string url)
+		private HttpClient GetClient()
 		{
-			using (var client = new HttpClient())
+			var client = new HttpClient();
+			client.BaseAddress = new Uri(ApiRouter.ApiUrl);
+			client.DefaultRequestHeaders.Accept.Clear();
+			client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+			return client;
+		}
+
+		private Exception BuildException(HttpStatusCode code, string reasonPhrase)
+		{
+			switch (code)
 			{
-				client.BaseAddress = new Uri(ApiRouter.ApiUrl);
-				client.DefaultRequestHeaders.Accept.Clear();
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				case HttpStatusCode.NotFound:
+					return new InvalidKeyException();
 
+				default:
+					return new HttpException((int)code, reasonPhrase);
+			}
+		}
+
+		private async Task<T> Get<T>(string url)
+		{
+			using (var client = this.GetClient())
+			{
 				HttpResponseMessage response = await client.GetAsync(url);
 				if (response.IsSuccessStatusCode)
 				{
@@ -53,20 +70,44 @@ namespace ShawInterviewExercise.Web.Net
 				}
 				else
 				{
-					switch (response.StatusCode)
-					{
-						case HttpStatusCode.Conflict:
-							throw new DuplicateKeyException();
-
-						case HttpStatusCode.NotFound:
-							throw new InvalidKeyException();
-
-						default:
-							throw new HttpException((int)response.StatusCode, response.ReasonPhrase);
-					}
+					throw this.BuildException(response.StatusCode, response.ReasonPhrase);
 				}
+			}
+		}
 
-				//return JsonConvert.DeserializeObject<T>(response);
+		private async Task Post(string url, object data)
+		{
+			using (var client = this.GetClient())
+			{
+				HttpResponseMessage response = await client.PostAsJsonAsync(url, data);
+				if (!response.IsSuccessStatusCode)
+				{
+					throw this.BuildException(response.StatusCode, response.ReasonPhrase);
+				}
+			}
+		}
+
+		private async Task Put(string url, object data)
+		{
+			using (var client = this.GetClient())
+			{
+				HttpResponseMessage response = await client.PutAsJsonAsync(url, data);
+				if (!response.IsSuccessStatusCode)
+				{
+					throw this.BuildException(response.StatusCode, response.ReasonPhrase);
+				}
+			}
+		}
+
+		private async Task Delete(string url)
+		{
+			using (var client = this.GetClient())
+			{
+				HttpResponseMessage response = await client.DeleteAsync(url);
+				if (!response.IsSuccessStatusCode)
+				{
+					throw this.BuildException(response.StatusCode, response.ReasonPhrase);
+				}
 			}
 		}
 	}
