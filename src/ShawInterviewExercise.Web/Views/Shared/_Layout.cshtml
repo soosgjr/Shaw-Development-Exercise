@@ -1,17 +1,31 @@
-﻿<!DOCTYPE html>
+﻿@using Resources = ShawInterviewExercise.Web.Resources.Shared._Layout
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>@(String.IsNullOrWhiteSpace(this.ViewBag.Title) ? Resources.Title : ViewBag.Title.ToString() + " | " + @Resources.Title)</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	<script type="text/javascript">
+		var config = {
+			apiUrl: @this.Html.Raw(Json.Encode(this.Url.Content(ApiRouter.ApiUrl)))
+			};
+	</script>
 </head>
 <body>
-    <a href="/">Introduction</a> <a href="/shows/">Shows</a>
-    @RenderBody()
-
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
+	<ul>
+		<li><a href="@HomeRouter.Index(this.Url)">@Resources.Home</a></li>
+		<li><a href="@ShowRouter.Index(this.Url)">@Resources.Shows</a></li>
+	</ul>
+	@if (this.IsSectionDefined("Breadcrumbs"))
+	{
+		<ul>@this.RenderSection("Breadcrumbs", false)</ul>
+	}
+	@this.RenderBody()
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/jqueryui")
+	@Scripts.Render("~/bundles/jqueryval")
+	@this.RenderSection("Scripts", false)
 </body>
 </html>

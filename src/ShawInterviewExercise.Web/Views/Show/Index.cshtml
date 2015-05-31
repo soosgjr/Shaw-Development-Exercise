@@ -1,0 +1,27 @@
+﻿@using Resources = ShawInterviewExercise.Web.Resources.Show.Index
+@using LayoutResources = ShawInterviewExercise.Web.Resources.Shared._Layout
+@model System.Collections.Generic.IEnumerable<Show>
+@{
+	ViewBag.Title = Resources.AllShows;
+}
+@section Breadcrumbs
+{
+	<li><a href="@HomeRouter.Index(this.Url)">@LayoutResources.Home</a></li>
+	<li><a href="@ShowRouter.Index(this.Url)">@Resources.AllShows</a></li>
+}
+
+<h2>@Resources.AllShows</h2>
+<ul>
+	@foreach (Show show in this.Model)
+	{
+		<li>
+			<a href="@ShowRouter.Details(this.Url, show.Id, show.Slug)">
+				@if (show.Filename != null)
+				{
+					<div><img src="@ShowRouter.Image(this.Url, show.Filename)" alt="@show.Name" title="@show.Name" /></div>
+				}
+				<h3>@show.Name</h3>
+			</a>
+		</li>
+	}
+</ul>

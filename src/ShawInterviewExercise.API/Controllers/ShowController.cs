@@ -1,68 +1,82 @@
-﻿using ShawInterviewExercise.API.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ShawInterviewExercise.Common.Data;
 
 namespace ShawInterviewExercise.API.Controllers
 {
-    public class ShowController : ApiController
-    {
-        public ShowService ShowService { get; set; }
-        public IEnumerable<Show> Get()
-        {
-            this.ShowService = new ShowService();
+	public class ShowController : ApiController
+	{
+		private IShowDal ShowDal { get; set; }
 
-            return this.ShowService.GetAllShows();
-        }
+		public ShowController() : this(null) { }
 
-        // GET api/show/5
-        public Show Get(int id)
-        {
-            this.ShowService = new ShowService();
-            return this.ShowService.GetById(id);
-        }
-    }
+		public ShowController(IShowDal dal = null)
+		{
+			this.ShowDal = dal ?? new Dal();
+		}
 
-    public class ShowService
-    {
-        public List<Show> Shows { get; set; }
+		public IEnumerable<Show> Get()
+		{
+			return this.ShowDal.GetAllShows();
+		}
 
-        public ShowService()
-        {
-            if(this.Shows == null)
-            {
-                this.Shows = this.PopulateDefaultShows();
-            }
-        }
+		public Show Get(int id)
+		{
+			Show show = this.ShowDal.GetShowById(id);
 
-        public List<Show> GetAllShows()
-        {
+			if (show == null)
+			{
+				var message = new HttpResponseMessage(HttpStatusCode.NotFound);
+				throw new HttpResponseException(message);
+			}
 
-            return Shows;
-        }
+			return show;
+		}
 
-        public Show GetById(int id)
-        {
-            return this.Shows.FirstOrDefault(x => x.Id.Equals(id));
-        }
+		public void Post(Show show)
+		{
+			try
+			{
+				this.ShowDal.CreateShow(show);
+			}
+			catch (DuplicateKeyException)
+			{
+				var message = new HttpResponseMessage(HttpStatusCode.Conflict);
+				throw new HttpResponseException(message);
+			}
+		}
 
-        private List<Show> PopulateDefaultShows()
-        {
-            var shows = new List<Show>();
+		public void Put(Show show)
+		{
+			try
+			{
+				this.ShowDal.UpdateShow(show);
+			}
+			catch (InvalidKeyException)
+			{
+				var message = new HttpResponseMessage(HttpStatusCode.NotFound);
+				throw new HttpResponseException(message);
+			}
+			catch (DuplicateKeyException)
+			{
+				var message = new HttpResponseMessage(HttpStatusCode.Conflict);
+				throw new HttpResponseException(message);
+			}
+		}
 
-            shows.Add(
-                new Show()
-                {
-                    Id = 1,
-                    Name = "Rookie Blue",
-                    Description = "Could be the best of all time!!!"
-                });
-
-            return shows;
-        }
-
-    }
+		public void Delete(int id)
+		{
+			try
+			{
+				this.ShowDal.DeleteShow(id);
+			}
+			catch (InvalidKeyException)
+			{
+				var message = new HttpResponseMessage(HttpStatusCode.NotFound);
+				throw new HttpResponseException(message);
+			}
+		}
+	}
 }

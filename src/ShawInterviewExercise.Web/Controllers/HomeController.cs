@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using ShawInterviewExercise.Web.Routing;
 
 namespace ShawInterviewExercise.Web.Controllers
 {
-    public class HomeController : Controller
-    {
-        //
-        // GET: /Home/
-
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-    }
+	public class HomeController : Controller
+	{
+		public ActionResult Index()
+		{
+			return this.Redirect(ShowRouter.Index(this.Url));
+		}
+	}
 }

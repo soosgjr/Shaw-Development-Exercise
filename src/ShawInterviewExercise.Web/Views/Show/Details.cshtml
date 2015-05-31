@@ -1,0 +1,15 @@
+﻿@using IndexResources = ShawInterviewExercise.Web.Resources.Show.Index
+@using LayoutResources = ShawInterviewExercise.Web.Resources.Shared._Layout
+@model Show
+@{
+	ViewBag.Title = this.Model.Name;
+}
+@section Breadcrumbs
+{
+	<li><a href="@HomeRouter.Index(this.Url)">@LayoutResources.Home</a></li>
+	<li><a href="@ShowRouter.Index(this.Url)">@IndexResources.AllShows</a></li>
+	<li><a href="@ShowRouter.Details(this.Url, this.Model.Id, this.Model.Slug)">@this.Model.Name</a></li>
+}
+
+<h2>@Model.Name</h2>
+<p>@Model.Description</p>
