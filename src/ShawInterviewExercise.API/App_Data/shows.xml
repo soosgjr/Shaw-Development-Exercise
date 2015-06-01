@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<ArrayOfShow xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Show>
+    <Id>1</Id>
+    <Slug>16x9</Slug>
+    <Name>16x9</Name>
+    <Description>zxc</Description>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>2</Id>
+    <Slug>battle-creek</Slug>
+    <Name>Battle Creek</Name>
+    <Filename>blue.png</Filename>
+  </Show>
+  <Show>
+    <Id>3</Id>
+    <Slug>big-brother-canada</Slug>
+    <Name>Big Brother Canada</Name>
+    <Filename>red.png</Filename>
+  </Show>
+  <Show>
+    <Id>6</Id>
+    <Slug>the-blacklist</Slug>
+    <Name>The Blacklist</Name>
+    <Filename>red.png</Filename>
+  </Show>
+  <Show>
+    <Id>7</Id>
+    <Slug>bobs-burgers</Slug>
+    <Name>Bob's Burgers</Name>
+    <Filename>red.png</Filename>
+  </Show>
+  <Show>
+    <Id>8</Id>
+    <Slug>bones</Slug>
+    <Name>Bones</Name>
+    <Filename>red.png</Filename>
+  </Show>
+  <Show>
+    <Id>9</Id>
+    <Slug>border-security</Slug>
+    <Name>Border Security</Name>
+    <Filename>red.png</Filename>
+  </Show>
+  <Show>
+    <Id>10</Id>
+    <Slug>canadas-walk-of-fame</Slug>
+    <Name>Canada's Walk of Fame</Name>
+    <Filename>blue.png</Filename>
+  </Show>
+  <Show>
+    <Id>11</Id>
+    <Slug>chicago-fire</Slug>
+    <Name>Chicago Fire</Name>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>12</Id>
+    <Slug>chicago-pd</Slug>
+    <Name>Chicago PD</Name>
+    <Filename>red.png</Filename>
+  </Show>
+  <Show>
+    <Id>13</Id>
+    <Slug>days-of-our-lives</Slug>
+    <Name>Days of Our Lives</Name>
+    <Filename>blue.png</Filename>
+  </Show>
+  <Show>
+    <Id>14</Id>
+    <Slug>the-doctors</Slug>
+    <Name>The Doctors</Name>
+    <Filename>red.png</Filename>
+  </Show>
+  <Show>
+    <Id>15</Id>
+    <Slug>elementary</Slug>
+    <Name>Elementary</Name>
+    <Filename>blue.png</Filename>
+  </Show>
+  <Show>
+    <Id>16</Id>
+    <Slug>et-canada</Slug>
+    <Name>ET Canada</Name>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>17</Id>
+    <Slug>extant</Slug>
+    <Name>Extant</Name>
+    <Filename>blue.png</Filename>
+  </Show>
+  <Show>
+    <Id>18</Id>
+    <Slug>family-guy</Slug>
+    <Name>Family Guy</Name>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>19</Id>
+    <Slug>global-news</Slug>
+    <Name>Global News</Name>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>20</Id>
+    <Slug>the-good-wife</Slug>
+    <Name>The Good Wife</Name>
+    <Filename>red.png</Filename>
+  </Show>
+  <Show>
+    <Id>21</Id>
+    <Slug>hawaii-five-0</Slug>
+    <Name>Hawaii Five-0</Name>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>22</Id>
+    <Slug>madam-secretary</Slug>
+    <Name>Madam Secretary</Name>
+    <Filename>red.png</Filename>
+  </Show>
+  <Show>
+    <Id>23</Id>
+    <Slug>the-meredith-vieira-show</Slug>
+    <Name>The Meredith Vieira Show</Name>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>24</Id>
+    <Slug>ncis</Slug>
+    <Name>NCIS</Name>
+    <Filename>blue.png</Filename>
+  </Show>
+  <Show>
+    <Id>25</Id>
+    <Slug>ncis-los-angeles</Slug>
+    <Name>NCIS: Los Angeles</Name>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>26</Id>
+    <Slug>ncis-new-orleans</Slug>
+    <Name>NCIS: New Orleans</Name>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>27</Id>
+    <Slug>the-night-shift</Slug>
+    <Name>The Night Shift</Name>
+    <Filename>red.png</Filename>
+  </Show>
+  <Show>
+    <Id>28</Id>
+    <Slug>pga-tour</Slug>
+    <Name>PGA TOUR</Name>
+    <Filename>red.png</Filename>
+  </Show>
+  <Show>
+    <Id>29</Id>
+    <Slug>the-rachael-ray-show</Slug>
+    <Name>The Rachael Ray Show</Name>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>30</Id>
+    <Slug>rdio-sessions-the-orange-lounge</Slug>
+    <Name>Rdio Sessions @ The Orange Lounge</Name>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>31</Id>
+    <Slug>remedy</Slug>
+    <Name>Remedy</Name>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>32</Id>
+    <Slug>rookie-blue</Slug>
+    <Name>Rookie Blue</Name>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>33</Id>
+    <Slug>saturday-night-live</Slug>
+    <Name>Saturday Night Live</Name>
+    <Filename>red.png</Filename>
+  </Show>
+  <Show>
+    <Id>34</Id>
+    <Slug>the-second-city-project</Slug>
+    <Name>The Second City Project</Name>
+    <Filename>blue.png</Filename>
+  </Show>
+  <Show>
+    <Id>35</Id>
+    <Slug>the-simpsons</Slug>
+    <Name>The Simpsons</Name>
+    <Filename>red.png</Filename>
+  </Show>
+  <Show>
+    <Id>36</Id>
+    <Slug>stalker</Slug>
+    <Name>Stalker</Name>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>37</Id>
+    <Slug>survivor</Slug>
+    <Name>Survivor</Name>
+    <Filename>blue.png</Filename>
+  </Show>
+  <Show>
+    <Id>38</Id>
+    <Slug>the-talk</Slug>
+    <Name>The Talk</Name>
+    <Filename>blue.png</Filename>
+  </Show>
+  <Show>
+    <Id>39</Id>
+    <Slug>under-the-dome</Slug>
+    <Name>Under The Dome</Name>
+    <Filename>green.png</Filename>
+  </Show>
+  <Show>
+    <Id>40</Id>
+    <Slug>the-young-and-the-restless</Slug>
+    <Name>The Young and the Restless</Name>
+    <Filename>red.png</Filename>
+  </Show>
+  <Show>
+    <Id>41</Id>
+    <Slug>test</Slug>
+    <Name>test</Name>
+    <Filename>red.png</Filename>
+  </Show>
+</ArrayOfShow>
