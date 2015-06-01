@@ -2,7 +2,8 @@
 @using LayoutResources = ShawInterviewExercise.Web.Resources.Shared._Layout
 @model System.Collections.Generic.IEnumerable<Show>
 @{
-	ViewBag.Title = Resources.AllShows;
+	this.ViewBag.ActiveMenu = ActiveMenu.Shows;
+	this.ViewBag.Title = Resources.AllShows;
 }
 @section Breadcrumbs
 {
@@ -11,17 +12,29 @@
 }
 
 <h2>@Resources.AllShows</h2>
-<ul>
+<div class="Filters">
+	<div class="LargeFilters"></div>
+	<div class="SmallFilters"></div>
+</div>
+<section id="showList" class="ShowList">
 	@foreach (Show show in this.Model)
 	{
-		<li>
+		<article>
 			<a href="@ShowRouter.Details(this.Url, show.Id, show.Slug)">
 				@if (show.Filename != null)
 				{
-					<div><img src="@ShowRouter.Image(this.Url, show.Filename)" alt="@show.Name" title="@show.Name" /></div>
+					<figure><img src="@ShowRouter.Image(this.Url, show.Filename)" alt="@show.Name" title="@show.Name" /></figure>
 				}
 				<h3>@show.Name</h3>
 			</a>
-		</li>
+		</article>
 	}
-</ul>
+</section>
+
+@section Scripts
+{
+	<script type="text/javascript">
+		sie.views.show.Index.showData = @this.Html.Raw(Json.Encode(this.Model));
+		sie.views.show.Index.showListSelector = "#showList";
+	</script>
+}

@@ -63,7 +63,7 @@ namespace ShawInterviewExercise.Web.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Update(int id, Show model)
+		public async Task<ActionResult> Update(Show model)
 		{
 			if (this.ModelState.IsValid)
 			{
@@ -91,11 +91,11 @@ namespace ShawInterviewExercise.Web.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Delete(int id, Show model)
+		public async Task<ActionResult> Delete(Show model)
 		{
 			try
 			{
-				await this.ShowApiClient.DeleteShow(id);
+				await this.ShowApiClient.DeleteShow(model.Id);
 				return this.Redirect(ShowAdminRouter.Index(this.Url));
 			}
 			catch (InvalidKeyException)

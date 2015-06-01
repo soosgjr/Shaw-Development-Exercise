@@ -138,6 +138,11 @@
     <Compile Include="Net\ApiClient.cs" />
     <Compile Include="Net\IShowApiClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Home\Sitemap.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sitemap.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Shared\_Layout.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -168,14 +173,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
     </Compile>
+    <Compile Include="Routing\ActiveMenu.cs" />
     <Compile Include="Routing\ApiRouter.cs" />
     <Compile Include="Routing\HomeRouter.cs" />
     <Compile Include="Routing\ShowAdminRouter.cs" />
     <Compile Include="Routing\ShowRouter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\compile.bat" />
+    <Content Include="Content\images\background.png" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <None Include="Content\theme.scss" />
+    <Content Include="Scripts\net\ApiClient.js" />
+    <Content Include="Scripts\views\show\Index.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -189,6 +200,8 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Show.cshtml" />
+    <Content Include="Content\_mixins.scss" />
+    <Content Include="Views\Home\Sitemap.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\ShowAdmin\Create.cshtml" />
@@ -210,6 +223,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Home\Sitemap.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Sitemap.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Shared\_Layout.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>_Layout.Designer.cs</LastGenOutput>

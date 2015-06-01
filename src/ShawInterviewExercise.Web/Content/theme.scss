@@ -1,0 +1,374 @@
+﻿@import "_mixins.scss";
+
+$fieldLabelWidth: 10rem;
+
+%BorderBoxSizing
+{
+	@include BorderBoxSizing;
+}
+
+%ClearFix
+{
+	@include ClearFix;
+}
+
+%HorizontalList
+{
+	@include HorizontalList;
+}
+
+%SeparatedList
+{
+	@include SeparatedList(">");
+}
+
+%UserSelectNone
+{
+	@include UserSelectNone;
+}
+
+A
+{
+	color: white;
+
+	&:hover
+	{
+		text-decoration: none;
+	}
+
+	&.Active
+	{
+		color: yellow;
+	}
+}
+
+BODY
+{
+	background-color: #072978;
+	background-image: url("images/background.png");
+	background-repeat: repeat-x;
+	color: white;
+	font-family: "verdana", sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+HEADER
+{
+	position: relative;
+}
+
+HTML
+{
+	font-size: 0.8em;
+	margin: 0;
+	padding: 0;
+}
+
+H1
+{
+	margin: 0;
+	padding: 0;
+}
+
+H2
+{
+	border-bottom: 1px solid black;
+	font-size: 1.2rem;
+	margin: 0 0 1rem;
+	padding-bottom: 0.5rem;
+}
+
+MAIN
+{
+	padding: 0 1rem;
+}
+
+.Field
+{
+	font-size: 0.8rem;
+	line-height: 1.2rem;
+	position: relative;
+	margin-bottom: 1rem;
+
+	LABEL
+	{
+		display: block;
+		line-height: 1.2rem;
+		width: $fieldLabelWidth;
+	}
+
+	.Input
+	{
+		@extend %BorderBoxSizing;
+		padding-left: $fieldLabelWidth;
+		position: absolute;
+		top: 0px;
+		width: 100%;
+
+		INPUT[type="text"],
+		TEXTAREA,
+		SELECT
+		{
+			width: 100%;
+		}
+	}
+}
+
+.ShowList
+{
+	@extend %ClearFix;
+	font-size: 0.9rem;
+
+	A
+	{
+		display: block;
+		padding: 0 10px;
+		text-decoration: none;
+	}
+
+	ARTICLE
+	{
+		float: left;
+		width: 50%;
+	}
+
+	FIGURE
+	{
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+
+	IMG
+	{
+		border: 0;
+		width: 100%;
+	}
+}
+
+.WrapperBreadcrumbs
+{
+	position: relative;
+
+	UL
+	{
+		@extend %SeparatedList;
+		position: absolute;
+		right: 1rem;
+		bottom: -1.6rem;
+
+		LI
+		{
+			font-size: 0.7rem;
+			margin-left: 0.3rem;
+
+			&:before
+			{
+				margin-right: 0.3rem;
+			}
+
+			&:last-child
+			{
+				display: none;
+			}
+		}
+	}
+}
+
+.WrapperLogo
+{
+	display: block;
+	margin: 0.5rem 1rem;
+	width: 100px;
+
+	IMG
+	{
+		width: 100%;
+	}
+}
+
+.WrapperMenuButton
+{
+	font-size: 1.5rem;
+}
+
+.WrapperTopMenu
+{
+	background: rgba(0, 0, 0, 0.5);
+	border: 1px solid white;
+	bottom: 1rem;
+	display: block;
+	padding: 0.7rem;
+	position: absolute;
+	right: 1rem;
+
+	A
+	{
+		text-decoration: none;
+	}
+
+	UL
+	{
+		@extend %HorizontalList;
+		display: none;
+
+		LI
+		{
+			font-size: 1.5rem;
+			margin-left: 1.5rem;
+		}
+	}
+}
+
+@media only screen and (max-width: 479px)
+{
+	.ShowList ARTICLE
+	{
+		&:nth-of-type(2n+1)
+		{
+			clear: left;
+		}
+	}
+}
+
+@media only screen and (min-width: 480px) and (max-width: 1023px)
+{
+	HTML
+	{
+		font-size: 0.9em;
+	}
+
+	.ShowList ARTICLE
+	{
+		width: 33.333%;
+
+		&:nth-of-type(3n+1)
+		{
+			clear: left;
+		}
+	}
+
+	.WrapperBreadcrumbs UL LI:last-child
+	{
+		display: inline;
+	}
+
+	.WrapperLogo
+	{
+		width: 150px;
+	}
+
+	.WrapperMenuButton
+	{
+		display: none;
+	}
+
+	.WrapperTopMenu UL
+	{
+		display: block;
+	}
+}
+
+@media only screen and (min-width: 1024px)
+{
+	HTML
+	{
+		font-size: 1em;
+	}
+
+	.ShowList ARTICLE
+	{
+		width: 25%;
+
+		&:nth-of-type(4n+1)
+		{
+			clear: left;
+		}
+	}
+
+	.Wrapper
+	{
+		margin: 0 auto;
+		width: 990px;
+	}
+
+	.WrapperBreadcrumbs UL LI:last-child
+	{
+		display: inline;
+	}
+
+	.WrapperLogo
+	{
+		width: 200px;
+	}
+
+	.WrapperMenuButton
+	{
+		display: none;
+	}
+
+	.WrapperTopMenu UL
+	{
+		display: block;
+	}
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset
+{
+	border: 1px solid #ddd;
+	padding: 0 1.4em 1.4em 1.4em;
+	margin: 0 0 1.5em 0;
+}
+
+legend
+{
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+textarea
+{
+	min-height: 75px;
+}
+
+.editor-label
+{
+	margin: 1em 0 0 0;
+}
+
+.editor-field
+{
+	margin: 0.5em 0 0 0;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+	color: #f00;
+}
+
+.field-validation-valid
+{
+	display: none;
+}
+
+.input-validation-error
+{
+	border: 1px solid #f00;
+	background-color: #fee;
+}
+
+.validation-summary-errors
+{
+	font-weight: bold;
+	color: #f00;
+}
+
+.validation-summary-valid
+{
+	display: none;
+}

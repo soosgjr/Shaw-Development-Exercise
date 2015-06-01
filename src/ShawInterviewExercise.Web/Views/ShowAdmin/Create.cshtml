@@ -3,7 +3,8 @@
 @using LayoutResources = ShawInterviewExercise.Web.Resources.Shared._Layout
 @model Show
 @{
-	ViewBag.Title = Resources.CreateNewShow;
+	this.ViewBag.ActiveMenu = ActiveMenu.Admin;
+	this.ViewBag.Title = Resources.CreateNewShow;
 }
 @section Breadcrumbs
 {

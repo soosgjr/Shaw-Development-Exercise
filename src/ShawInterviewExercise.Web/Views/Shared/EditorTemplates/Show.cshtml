@@ -1,7 +1,17 @@
 ﻿@model Show
 @Html.HiddenFor(model => this.Model.Id)
 @Html.HiddenFor(model => this.Model.Slug)
-<div>@Html.LabelFor(model => this.Model.Name)</div>
-<div>@Html.EditorFor(model => this.Model.Name) @Html.ValidationMessageFor(model => this.Model.Name)</div>
-<div>@Html.LabelFor(model => this.Model.Description)</div>
-<div>@Html.EditorFor(model => this.Model.Description) @Html.ValidationMessageFor(model => this.Model.Description)</div>
+<div class="Field">
+	@Html.LabelFor(model => this.Model.Name)
+	<div class="Input">
+		<div>@Html.EditorFor(model => this.Model.Name)</div>
+		<div>@Html.ValidationMessageFor(model => this.Model.Name)</div>
+	</div>
+</div>
+<div class="Field">
+	@Html.LabelFor(model => this.Model.Description)
+	<div class="Input">
+		<div>@Html.EditorFor(model => this.Model.Description)</div>
+		<div>@Html.ValidationMessageFor(model => this.Model.Description)</div>
+	</div>
+</div>

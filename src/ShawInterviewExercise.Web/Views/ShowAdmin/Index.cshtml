@@ -2,7 +2,8 @@
 @using LayoutResources = ShawInterviewExercise.Web.Resources.Shared._Layout
 @model System.Collections.Generic.IEnumerable<Show>
 @{
-	ViewBag.Title = Resources.Admin;
+	this.ViewBag.ActiveMenu = ActiveMenu.Admin;
+	this.ViewBag.Title = Resources.Admin;
 }
 @section Breadcrumbs
 {

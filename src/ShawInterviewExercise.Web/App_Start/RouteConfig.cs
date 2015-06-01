@@ -47,6 +47,12 @@ namespace ShawInterviewExercise.Web
 			);
 
 			routes.MapRoute(
+				name: HomeRouter.RouteNames.Sitemap,
+				url: "sitemap",
+				defaults: new { controller = "Home", action = "Sitemap" }
+			);
+
+			routes.MapRoute(
 				name: HomeRouter.RouteNames.Index,
 				url: "",
 				defaults: new { controller = "Home", action = "Index" }

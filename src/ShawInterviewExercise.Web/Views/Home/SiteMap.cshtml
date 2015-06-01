@@ -1,0 +1,16 @@
+﻿@using Resources = ShawInterviewExercise.Web.Resources.Home.Sitemap
+@using LayoutResources = ShawInterviewExercise.Web.Resources.Shared._Layout
+@{
+	this.ViewBag.Title = Resources.Title;
+}
+@section Breadcrumbs
+{
+	<li><a href="@HomeRouter.Index(this.Url)">@LayoutResources.Home</a></li>
+	<li><a href="@HomeRouter.Sitemap(this.Url)">@Resources.Title</a></li>
+}
+
+<h2>@Resources.Title</h2>
+<ul>
+	<li><a href="@ShowRouter.Index(this.Url)">@LayoutResources.Shows</a></li>
+	<li><a href="@ShowAdminRouter.Index(this.Url)">@LayoutResources.Admin</a></li>
+</ul>

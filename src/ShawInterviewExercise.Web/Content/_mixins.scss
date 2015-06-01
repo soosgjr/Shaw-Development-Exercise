@@ -1,0 +1,72 @@
+﻿@mixin BorderBoxSizing
+{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+@mixin ClearFix
+{
+	_zoom: 1;
+
+	&:after
+	{
+		clear: both;
+	}
+
+	&:after, &:before
+	{
+		content: "";
+		display: table;
+	}
+}
+
+@mixin HorizontalList
+{
+	font-size: 0;
+	margin: 0;
+	padding: 0;
+
+	LI
+	{
+		display: inline;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		&:first-child
+		{
+			margin-left: 0;
+			padding-left: 0;
+		}
+	}
+}
+
+@mixin SeparatedList($content)
+{
+	@include HorizontalList;
+
+	LI
+	{
+		&:before
+		{
+			content: $content;
+		}
+
+		&:first-child:before
+		{
+			content: "" !important;
+			margin: 0;
+		}
+	}
+}
+
+@mixin UserSelectNone
+{
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+}

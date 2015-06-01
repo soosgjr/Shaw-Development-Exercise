@@ -3,7 +3,8 @@
 @using LayoutResources = ShawInterviewExercise.Web.Resources.Shared._Layout
 @model Show
 @{
-	ViewBag.Title = this.Model.Name;
+	this.ViewBag.ActiveMenu = ActiveMenu.Admin;
+	this.ViewBag.Title = this.Model.Name;
 }
 @section Breadcrumbs
 {
@@ -16,6 +17,7 @@
 @using (Html.BeginForm())
 {
 	@Html.AntiForgeryToken()
+	@Html.HiddenFor(model => model.Id)
 	<p>@String.Format(Resources.AreYouSure, this.Model.Name)</p>
 	<div><input type="submit" value="@Resources.Ok" /> <a href="@ShowAdminRouter.Index(this.Url)">@Resources.Cancel</a></div>
 }

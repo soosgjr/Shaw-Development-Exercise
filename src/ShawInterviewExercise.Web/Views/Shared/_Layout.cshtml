@@ -4,21 +4,30 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
-	<title>@(String.IsNullOrWhiteSpace(this.ViewBag.Title) ? Resources.Title : ViewBag.Title.ToString() + " | " + @Resources.Title)</title>
+	<title>@(String.IsNullOrWhiteSpace(this.ViewBag.Title) ? Resources.Title : this.ViewBag.Title.ToString() + " | " + @Resources.Title)</title>
 	@Styles.Render("~/Content/css")
 	@Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-	<ul>
-		<li><a href="@HomeRouter.Index(this.Url)">@Resources.Home</a></li>
-		<li><a href="@ShowRouter.Index(this.Url)">@Resources.Shows</a></li>
-		<li><a href="@ShowAdminRouter.Index(this.Url)">@Resources.Admin</a></li>
-	</ul>
-	@if (this.IsSectionDefined("Breadcrumbs"))
-	{
-		<ul>@this.RenderSection("Breadcrumbs", false)</ul>
-	}
-	@this.RenderBody()
+	<div class="Wrapper">
+		<header>
+			<a class="WrapperLogo" href="@HomeRouter.Index(this.Url)"><h1><img src="@Url.Content("~/Content/images/logo.png")" alt="@Resources.Title" title="@Resources.Title" /></h1></a>
+			<nav class="WrapperTopMenu">
+				<ul>
+					<li><a class="@(this.ViewBag.ActiveMenu == ActiveMenu.Shows ? "Active" : "")" href="@ShowRouter.Index(this.Url)">@Resources.Shows</a></li>
+					<li><a class="@(this.ViewBag.ActiveMenu == ActiveMenu.Admin ? "Active" : "")" href="@ShowAdminRouter.Index(this.Url)">@Resources.Admin</a></li>
+				</ul>
+				<div class="WrapperMenuButton"><a href="@HomeRouter.Sitemap(this.Url)">@Resources.Menu</a></div>
+			</nav>
+		</header>
+		@if (this.IsSectionDefined("Breadcrumbs"))
+		{
+			<nav class="WrapperBreadcrumbs"><ul>@this.RenderSection("Breadcrumbs", false)</ul></nav>
+		}
+		<main>
+			@this.RenderBody()
+		</main>
+	</div>
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/jqueryui")
 	@Scripts.Render("~/bundles/jqueryval")

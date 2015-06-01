@@ -9,5 +9,10 @@ namespace ShawInterviewExercise.Web.Controllers
 		{
 			return this.Redirect(ShowRouter.Index(this.Url));
 		}
+
+		public ActionResult Sitemap()
+		{
+			return this.View();
+		}
 	}
 }
