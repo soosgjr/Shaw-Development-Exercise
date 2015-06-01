@@ -19,5 +19,12 @@
 	@Html.AntiForgeryToken()
 	@Html.HiddenFor(model => model.Id)
 	<p>@String.Format(Resources.AreYouSure, this.Model.Name)</p>
-	<div><input type="submit" value="@Resources.Ok" /> <a href="@ShowAdminRouter.Index(this.Url)">@Resources.Cancel</a></div>
+	<div class="Controls"><input class="Button" type="submit" value="@Resources.Ok" /> <a class="Button" href="@ShowAdminRouter.Index(this.Url)">@Resources.Cancel</a></div>
+}
+
+@section Scripts
+{
+	<script type="text/javascript">
+		$(".Button").button();
+	</script>
 }

@@ -12,10 +12,20 @@
 }
 
 <h2>@Resources.Admin</h2>
-<ul>
+<ul class="ShowAdminList">
 	@foreach (Show show in this.Model)
 	{
-		<li><a href="@ShowAdminRouter.Update(this.Url, show.Id)">@show.Name</a> <a href="@ShowAdminRouter.Delete(this.Url, show.Id)">@Resources.Delete</a></li>
+		<li>
+			<a class="Button ShowButton" href="@ShowAdminRouter.Update(this.Url, show.Id)">@show.Name</a>
+			<a class="Button DeleteButton" href="@ShowAdminRouter.Delete(this.Url, show.Id)">@Resources.Delete</a>
+		</li>
 	}
-	<li><a href="@ShowAdminRouter.Create(this.Url)">@Resources.CreateNew</a></li>
 </ul>
+<div class="Controls"><a class="Button" href="@ShowAdminRouter.Create(this.Url)">@Resources.CreateNew</a></div>
+
+@section Scripts
+{
+	<script type="text/javascript">
+		$(".Button").button();
+	</script>
+}

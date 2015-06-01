@@ -5,6 +5,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
 	<title>@(String.IsNullOrWhiteSpace(this.ViewBag.Title) ? Resources.Title : this.ViewBag.Title.ToString() + " | " + @Resources.Title)</title>
+	@Styles.Render("~/Content/themes/base/css")
 	@Styles.Render("~/Content/css")
 	@Scripts.Render("~/bundles/modernizr")
 </head>

@@ -74,7 +74,7 @@ H1
 H2
 {
 	border-bottom: 1px solid black;
-	font-size: 1.2rem;
+	font-size: 2rem;
 	margin: 0 0 1rem;
 	padding-bottom: 0.5rem;
 }
@@ -82,6 +82,17 @@ H2
 MAIN
 {
 	padding: 0 1rem;
+	margin-bottom: 3rem;
+}
+
+.Controls
+{
+	text-align: right;
+
+	.Button
+	{
+		width: 10rem;
+	}
 }
 
 .Field
@@ -147,6 +158,35 @@ MAIN
 	}
 }
 
+.ShowAdminList
+{
+	margin: 0;
+	padding: 0;
+
+	LI
+	{
+		list-style: none;
+		margin: 0 0 1rem;
+		padding: 0;
+		position: relative;
+	}
+
+	.DeleteButton
+	{
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 6rem;
+	}
+
+	.ShowButton
+	{
+		@extend %BorderBoxSizing;
+		text-align: left;
+		width: 100%;
+	}
+}
+
 .WrapperBreadcrumbs
 {
 	position: relative;
@@ -156,7 +196,7 @@ MAIN
 		@extend %SeparatedList;
 		position: absolute;
 		right: 1rem;
-		bottom: -1.6rem;
+		bottom: 0;
 
 		LI
 		{
