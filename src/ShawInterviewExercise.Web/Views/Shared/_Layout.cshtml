@@ -28,6 +28,7 @@
 		<main>
 			@this.RenderBody()
 		</main>
+		<div class="WrapperLoader"><img src="@Url.Content("~/Content/images/ajax-loader.gif")" alt="@Resources.Loading" title="@Resources.Loading" /></div>
 	</div>
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/jqueryui")

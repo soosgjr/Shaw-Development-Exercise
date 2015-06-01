@@ -181,11 +181,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\compile.bat" />
+    <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\background.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Global.asax" />
     <None Include="Content\theme.scss" />
     <Content Include="Scripts\net\ApiClient.js" />
+    <Content Include="Scripts\views\shared\Layout.js" />
+    <Content Include="Scripts\views\showadmin\Create.js" />
+    <Content Include="Scripts\views\showadmin\Index.js" />
+    <Content Include="Scripts\views\showadmin\Update.js" />
     <Content Include="Scripts\views\show\Index.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />

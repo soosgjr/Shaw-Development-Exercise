@@ -17,7 +17,7 @@
 	{
 		<li>
 			<a class="Button ShowButton" href="@ShowAdminRouter.Update(this.Url, show.Id)">@show.Name</a>
-			<a class="Button DeleteButton" href="@ShowAdminRouter.Delete(this.Url, show.Id)">@Resources.Delete</a>
+			<a class="Button DeleteButton" href="@ShowAdminRouter.Delete(this.Url, show.Id)" data-id="@show.Id">@Resources.Delete</a>
 		</li>
 	}
 </ul>
@@ -26,6 +26,6 @@
 @section Scripts
 {
 	<script type="text/javascript">
-		$(".Button").button();
+		sie.views.showadmin.Index.initialize();
 	</script>
 }

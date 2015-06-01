@@ -5,9 +5,21 @@ sie.net.ApiClient = {};
 
 sie.net.ApiClient.apiUrl = null;
 
+sie.net.ApiClient.createShow = function(data, onSuccess, onError)
+{
+	var url = sie.net.ApiClient._generateUrl("api/show");
+	$.ajax({
+		url: url,
+		data: data,
+		type: "POST",
+		success: onSuccess,
+		error: onError
+	});
+};
+
 sie.net.ApiClient.readAllShows = function(onSuccess, onError)
 {
-	var url = sie.net.ApiClient._generateUrl("show/get");
+	var url = sie.net.ApiClient._generateUrl("api/show");
 	$.ajax({
 		url: url,
 		type: "GET",
@@ -18,10 +30,22 @@ sie.net.ApiClient.readAllShows = function(onSuccess, onError)
 
 sie.net.ApiClient.deleteShow = function(id, onSuccess, onError)
 {
-	var url = sie.net.ApiClient._generateUrl("show/get/" + id);
+	var url = sie.net.ApiClient._generateUrl("api/show/" + id);
 	$.ajax({
 		url: url,
 		type: "DELETE",
+		success: onSuccess,
+		error: onError
+	});
+};
+
+sie.net.ApiClient.updateShow = function(data, onSuccess, onError)
+{
+	var url = sie.net.ApiClient._generateUrl("api/show");
+	$.ajax({
+		url: url,
+		data: data,
+		type: "PUT",
 		success: onSuccess,
 		error: onError
 	});

@@ -40,7 +40,11 @@ namespace ShawInterviewExercise.Web
 
 			bundles.Add(new ScriptBundle("~/bundles/site").Include(
 				"~/Scripts/net/ApiClient.js",
-				"~/Scripts/views/show/Index.js"
+				"~/Scripts/views/shared/Layout.js",
+				"~/Scripts/views/show/Index.js",
+				"~/Scripts/views/showadmin/Create.js",
+				"~/Scripts/views/showadmin/Index.js",
+				"~/Scripts/views/showadmin/Update.js"
 			));
 		}
 	}

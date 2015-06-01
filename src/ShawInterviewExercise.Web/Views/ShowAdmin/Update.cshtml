@@ -18,12 +18,13 @@
 {
 	@Html.AntiForgeryToken()
 	@Html.EditorFor(model => this.Model)
+	<div>@Html.ValidationSummary()</div>
 	<div class="Controls"><input class="Button" type="submit" value="@Resources.Submit" /></div>
 }
 
 @section Scripts
 {
 	<script type="text/javascript">
-		$(".Button").button();
+		sie.views.showadmin.Update.initialize("MAIN FORM", @this.Html.Raw(Json.Encode(ShowAdminRouter.Index(this.Url))));
 	</script>
 }
